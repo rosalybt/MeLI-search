@@ -1,9 +1,19 @@
-const Button = ({ type, content, handleClick }) => {
+import Button from '@material-ui/core/Button';
+const ButtonSimple = ({ type, content, color, funcion }) => {
+
+    const handleClick = (e) => {
+        console.log(e.target.value)
+    }
+
     return (
-        <button type={type} onClick={handleClick}>
+        <Button
+            variant="outlined"
+            color={color}
+            type={type}
+            onClick={handleClick}>
             {content}
-        </button>
+        </Button>
     )
 }
 
-export default Button
+export default ButtonSimple

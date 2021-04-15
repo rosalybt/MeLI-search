@@ -4,9 +4,10 @@ import './App.css';
 import './components/Card.scss'
 import Button from './components/Button'
 // import Form from './components/Form'
-import Card from './components/Card'
+import CardSimple from './components/Card'
 // import { EventOutlined } from '@material-ui/icons';
-
+// import InputBase from '@material-ui/core/InputBase';
+import Nav from './components/Nav'
 function App() {
 
   let [products, setProducts] = useState([])
@@ -20,11 +21,10 @@ function App() {
   }, [search])
 
 
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 13 || e.which === 13) {
-      e.preventDefault();
-      setSearch(e.target.value)
-    }
+  const searchValue = (value) => {
+
+    setSearch(value)
+
 
   }
 
@@ -34,18 +34,25 @@ function App() {
 
   return (
     <>
-      <form>
-        <input onKeyPress={handleKeyDown} type="text"></input>
-        <Button type="submit" content="Buscar" con />
-        <div className='container-cards'>
-          {products.map(product => {
-            return <Card key={product.id} img={product.thumbnail}
-              title={product.title}
-              price={product.price}
-              shipping={product.shipping.free_shipping} />
-          })}
-        </div>
-      </form>
+
+
+      <Nav searchValue={searchValue}>
+
+        <form>
+          <Button type="submit" content="Buscar" />
+        </form>
+      </Nav>
+
+      <div className='container-cards'>
+        {products.map(product => {
+          return <CardSimple key={product.id} img={product.thumbnail}
+            title={product.title}
+            price={product.price}
+            shipping={product.shipping.free_shipping} />
+        })}
+
+      </div>
+
 
     </>
 

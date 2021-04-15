@@ -1,15 +1,28 @@
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import './Card.scss'
-const Card = ({ img, shipping, title, price }) => {
+import React from 'react';
+
+import Card from '@material-ui/core/Card';
+import Button from './Button'
+
+const CardSimple = ({ img, shipping, title, price }) => {
+
+
+
+
+
     return (
-        <article className="card">
+        <Card className="card">
             {shipping && <div className='content-icon'> <LocalShippingIcon fontSize="large" /></div>}
             <div className="img-product"><img src={img} alt="img"></img></div>
 
-            {title && <h2 className=''>{title}</h2>}
+            {title && <h3 className=''>{title}</h3>}
             {price && <p>${price}</p>}
-        </article>
+
+            <div>
+                <Button content="Ver mas"></Button>
+            </div>
+        </Card>
     )
 }
 
-export default Card
+export default CardSimple
