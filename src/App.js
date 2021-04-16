@@ -4,6 +4,7 @@ import './App.css';
 import './components/Card.scss'
 import Button from './components/Button'
 import CardSimple from './components/CardSimple'
+import CardDetails from './components/CardDetails'
 import Nav from './components/Nav'
 function App() {
 
@@ -21,8 +22,12 @@ function App() {
   }, [search])
 
 
-  const searchValue = (value) => setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${value}`)
-
+  const searchValue = (value) => {
+    // debugger
+    setSelectedProduct(false)
+    setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${value}`)
+  }
+  console.log(productSelected)
   const searchById = (value) => {
     debugger
     setSelectedProduct(true)
@@ -54,17 +59,17 @@ function App() {
               shipping={product.shipping.free_shipping} />
           })
         }
-
+        {console.log('array foto', products)}
         {
           productSelected &&
-          < CardSimple
-            showMore={searchById}
-            key={products.id}
-            id={products.id}
-            img={products.secure_thumbnail}
+          < CardDetails
+            // img={products.pictures[0].secure_url}
             title={products.title}
             price={products.price}
-            shipping={products.shipping.free_shipping}
+            condition={products.condition}
+            soldQuantity={products.sold_quantity}
+            permalink={products.permalink}
+          // description={products.descriptions}
           />
         }
       </div>
