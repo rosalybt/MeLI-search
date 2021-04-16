@@ -6,6 +6,12 @@
   align-items: center;
   padding: 10px 50px;
   background-color: #f5f5f5;
+
+  .card-details {
+    display: flex;
+    padding: 20px;
+  }
+
   .card {
     display: flex;
     flex-direction: column;
