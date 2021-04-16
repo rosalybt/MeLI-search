@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 
-const ButtonSimple = ({ id, type, content, color, funcion, variant = "outlined" }) => {
+const ButtonSimple = ({ id, type, content, color, funcion, variant = "outlined", icon }) => {
 
     const handleClick = () => funcion(id)
 
@@ -9,6 +9,7 @@ const ButtonSimple = ({ id, type, content, color, funcion, variant = "outlined" 
             variant={variant}
             color={color}
             type={type}
+            startIcon={icon}
             onClick={handleClick}>
             {content}
         </Button>

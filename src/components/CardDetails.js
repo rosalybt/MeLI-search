@@ -1,6 +1,7 @@
 
 import Card from '@material-ui/core/Card';
 import Button from './Button'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const CardDetails = ({ img, permalink, title, price, condition, soldQuantity, description = "No disponible" }) => {
 
@@ -8,6 +9,10 @@ const CardDetails = ({ img, permalink, title, price, condition, soldQuantity, de
 
     return (
         <Card className="card-details">
+            <div>
+                <Button content="atras" color="default" icon={<ArrowBackIosIcon />}></Button>
+            </div>
+
             <div className="img-item">
                 <img src={img} alt="img"></img>
             </div>

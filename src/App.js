@@ -63,7 +63,7 @@ function App() {
         {
           productSelected &&
           < CardDetails
-            // img={products.pictures[0].secure_url}
+            img={products.pictures[0].secure_url}
             title={products.title}
             price={products.price}
             condition={products.condition}
