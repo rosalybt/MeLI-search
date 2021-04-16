@@ -24,7 +24,7 @@ const CardDetails = ({ img, permalink, title, price, condition, soldQuantity, de
                     {<p>{description}</p>}
                 </div>
                 <div>
-                    <Button content="Comprar" funcion={handleClick} ></Button>
+                    <Button content="Comprar" funcion={handleClick} variant="contained" color="secondary"></Button>
                 </div>
             </div>
 
