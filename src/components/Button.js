@@ -1,9 +1,8 @@
 import Button from '@material-ui/core/Button';
-const ButtonSimple = ({ type, content, color, funcion }) => {
 
-    const handleClick = (e) => {
-        console.log(e.target.value)
-    }
+const ButtonSimple = ({ id, type, content, color, funcion }) => {
+
+    const handleClick = () => funcion(id)
 
     return (
         <Button
