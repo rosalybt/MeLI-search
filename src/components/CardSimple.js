@@ -3,8 +3,9 @@ import Card from '@material-ui/core/Card';
 import Button from './Button'
 
 const CardSimple = ({ id, img, shipping, title, price, showMore }) => {
+    const handleClick = () => { showMore(id) }
     return (
-        <Card className="card" data-id={id}>
+        <Card className="card">
             {shipping && <div className='content-icon'> <LocalShippingIcon fontSize="large" /></div>}
             <div className="img-product"><img src={img} alt="img"></img></div>
 
@@ -12,7 +13,7 @@ const CardSimple = ({ id, img, shipping, title, price, showMore }) => {
             {price && <p>${price}</p>}
 
             <div>
-                <Button content="Ver mas" funcion={showMore} id={id} ></Button>
+                <Button content="Ver mas" funcion={handleClick} id={id} ></Button>
             </div>
         </Card>
     )
