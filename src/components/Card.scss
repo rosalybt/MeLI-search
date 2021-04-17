@@ -10,12 +10,19 @@
   align-items: center;
   padding: 10px 50px;
   background-color: #f5f5f5;
+  h2 {
+    margin: 0;
+  }
   width: 100%;
   .card-details {
     display: flex;
     padding: 50px;
     .img-item {
       margin-right: 50px;
+    }
+
+    .more-info {
+      padding-top: 30px;
     }
   }
 

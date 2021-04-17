@@ -11,8 +11,12 @@ function App() {
   let [products, setProducts] = useState([])
   let [productSelected, setSelectedProduct] = useState(false)
   let [search, setSearch] = useState('')
+  let [idItem, setIdItem] = useState(0)
+  let [description, setDescription] = useState('')
+  let [inputValue, setInputValue] = useState('')
 
   useEffect(() => {
+
     fetch(search)
       .then(res => res.json())
       .then(data => {
@@ -21,19 +25,41 @@ function App() {
 
   }, [search])
 
+  useEffect(() => {
+    fetch(`https://api.mercadolibre.com/items/${idItem}/description`)
+      .then(res => res.json())
+      .then(data => {
+        setDescription(data.plain_text)
+      })
+
+  }, [idItem])
+
 
   const searchValue = (value) => {
-
+    setInputValue(value)
     setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${value}`)
     setSelectedProduct(false)
+
   }
 
   const searchById = (value) => {
-    setSearch(`https://api.mercadolibre.com/items/${value}`)
+    setIdItem(value)
     setSelectedProduct(true)
+    setSearch(`https://api.mercadolibre.com/items/${value}`)
+
   }
 
-
+  const goBack = () => {
+    // setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}`)
+    // console.log('go back', inputValue)
+    // return inputValue
+    setSelectedProduct(false)
+    // searchValue(inputValue)
+    console.log('array productos', products)
+    setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}`)
+    // alert('atras' + productSelected)
+  }
+  console.log('array productos fuera', products)
   return (
     <>
       <Nav searchValue={searchValue}>
@@ -58,7 +84,7 @@ function App() {
               shipping={product.shipping.free_shipping} />
           })
         }
-        {console.log('array foto', products)}
+
         {
           productSelected &&
           < CardDetails
@@ -68,7 +94,8 @@ function App() {
             condition={products.condition}
             soldQuantity={products.sold_quantity}
             permalink={products.permalink}
-          // description={products.descriptions}
+            description={description}
+            goBack={goBack}
           />
         }
       </div>

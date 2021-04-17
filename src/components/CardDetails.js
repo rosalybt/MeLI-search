@@ -3,14 +3,14 @@ import Card from '@material-ui/core/Card';
 import Button from './Button'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const CardDetails = ({ img, permalink, title, price, condition, soldQuantity, description = "No disponible" }) => {
+const CardDetails = ({ img, permalink, title, price, condition, soldQuantity, description = "No disponible", goBack }) => {
 
     const handleClick = () => window.open(permalink, "_blank")
 
     return (
         <Card className="card-details">
             <div>
-                <Button content="atras" color="default" icon={<ArrowBackIosIcon />}></Button>
+                <Button content="atras" color="default" funcion={goBack} icon={<ArrowBackIosIcon />}></Button>
             </div>
 
             <div className="img-item">
@@ -18,14 +18,14 @@ const CardDetails = ({ img, permalink, title, price, condition, soldQuantity, de
             </div>
             <div className="info">
                 <div className="more-info">
-                    {title && <h2>{title}</h2>}
-                    {(condition || soldQuantity) && <span>{`${condition} | ${soldQuantity} vendidos`}</span>}
+                    {<h2>{title}</h2>}
+                    {<span>{`${condition} | ${soldQuantity} vendidos`}</span>}
 
-                    {price && <h4>Precio:{(price).toLocaleString('en-US', {
+                    {/* {<h4>Precio:{(price).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'ARS',
-                    })}</h4>}
-                    <br></br>
+                    })}</h4>} */}
+
                     {<p>{description}</p>}
                 </div>
                 <div>
