@@ -50,14 +50,8 @@ function App() {
   }
 
   const goBack = () => {
-    // setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}`)
-    // console.log('go back', inputValue)
-    // return inputValue
     setSelectedProduct(false)
-    // searchValue(inputValue)
-    console.log('array productos', products)
     setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}`)
-    // alert('atras' + productSelected)
   }
   console.log('array productos fuera', products)
   return (
@@ -72,7 +66,7 @@ function App() {
       <div className='container-cards'>
 
         {
-          !productSelected &&
+          !productSelected && products.length > 1 &&
           products.map(product => {
             return <CardSimple
               showMore={searchById}
