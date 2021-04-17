@@ -23,15 +23,14 @@ function App() {
 
 
   const searchValue = (value) => {
-    // debugger
-    setSelectedProduct(false)
+
     setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${value}`)
+    setSelectedProduct(false)
   }
-  console.log(productSelected)
+
   const searchById = (value) => {
-    debugger
-    setSelectedProduct(true)
     setSearch(`https://api.mercadolibre.com/items/${value}`)
+    setSelectedProduct(true)
   }
 
 
@@ -63,7 +62,7 @@ function App() {
         {
           productSelected &&
           < CardDetails
-            img={products.pictures[0].secure_url}
+            img={products.pictures && products.pictures.length && products.pictures?.[0].secure_url}
             title={products.title}
             price={products.price}
             condition={products.condition}
