@@ -83,6 +83,10 @@ function App() {
     // setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}&FilterID=${}`)
   }
 
+
+  const handleClickListOrder = (id) => {
+    setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}&sort=${id}`)
+  }
   return (
     <>
       <Nav searchValue={searchValue}>
@@ -95,7 +99,7 @@ function App() {
 
       <main>
 
-        <AsideFilter checkShipping={checkShipping} funcion={shippingFilter}></AsideFilter>
+        <AsideFilter checkShipping={checkShipping} funcion={shippingFilter} clickOrder={handleClickListOrder}></AsideFilter>
 
 
         <div className='container-cards'>
@@ -149,6 +153,18 @@ function App() {
                 shipping={product.shipping.free_shipping} />
             })
           }
+
+          {/* {
+
+            products.results.reduce((acc, item) => {
+              // acc[0] = (val < acc[0]) ? val : acc[0]
+              // acc[1] = (val > acc[1]) ? val : acc[1]
+              console.log(acc, item)
+              // acc.price > item.price ? acc = item : acc = item
+              return acc;
+            }, 0)
+          } */}
+
 
         </div>
       </main>

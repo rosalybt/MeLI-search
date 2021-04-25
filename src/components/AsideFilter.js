@@ -6,6 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBox from './Checkbox';
+import Lista from './list'
 
 
 
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SimpleAccordion({ checkShipping, funcion }) {
+export default function SimpleAccordion({ checkShipping, funcion, clickOrder }) {
     const classes = useStyles();
 
     return (
@@ -48,9 +49,8 @@ export default function SimpleAccordion({ checkShipping, funcion }) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
-          </Typography>
+                        <Lista funcion={clickOrder} />
+                    </Typography>
                 </AccordionDetails>
             </Accordion>
             <Accordion disabled>
