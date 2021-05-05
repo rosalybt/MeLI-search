@@ -18,6 +18,7 @@ function App() {
   let [description, setDescription] = useState('')
   let [inputValue, setInputValue] = useState('')
   let [checkShipping, setCheckShipping] = useState(false)
+  let [searchByLocation, setSearchByLocation] = useState(false)
 
   useEffect(() => {
 
@@ -25,6 +26,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         setProducts(data.results || data)
+        console.log('fetch', data)
       })
 
   }, [search])
@@ -60,33 +62,23 @@ function App() {
 
   const shippingFilter = () => {
     setCheckShipping(!checkShipping)
-    // setSearch('')
-    // console.log('check', checkShipping)
-    // let camion = products.filter(pro => {
-    //   return pro.shipping.free_shipping
-    // })
 
+  }
 
-
-
-    // // console.log(camion)
-    // checkShipping && camion.map(product => {
-    //   return <CardSimple
-    //     showMore={searchById}
-    //     key={product.id}
-    //     id={product.id}
-    //     img={product.thumbnail}
-    //     title={product.title}
-    //     price={product.price}
-    //     shipping={product.shipping.free_shipping} />
-    // })
-    // setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}&FilterID=${}`)
+  const location = (filterId) => {
+    setSearchByLocation(true)
+    setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}/states/${filterId}`)
   }
 
 
-  const handleClickListOrder = (id) => {
-    setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}&sort=${id}`)
+
+  const handleClickListOrder = (filterId) => {
+    setSearch(`https://api.mercadolibre.com/sites/MLA/search?q=${inputValue}&sort=${filterId}`)
   }
+
+
+
+  // console.log('productos', products)
   return (
     <>
       <Nav searchValue={searchValue}>
@@ -99,7 +91,7 @@ function App() {
 
       <main>
 
-        <AsideFilter checkShipping={checkShipping} funcion={shippingFilter} clickOrder={handleClickListOrder}></AsideFilter>
+        <AsideFilter checkShipping={checkShipping} funcion={shippingFilter} funcionLocation={location} clickOrder={handleClickListOrder}  ></AsideFilter>
 
 
         <div className='container-cards'>
@@ -107,7 +99,7 @@ function App() {
           {
             !productSelected && !checkShipping && products.length > 1 &&
             products.map(product => {
-              console.log(product)
+              // console.log(product)
               return <CardSimple
                 showMore={searchById}
                 key={product.id}
@@ -154,17 +146,18 @@ function App() {
             })
           }
 
-          {/* {
-
-            products.results.reduce((acc, item) => {
-              // acc[0] = (val < acc[0]) ? val : acc[0]
-              // acc[1] = (val > acc[1]) ? val : acc[1]
-              console.log(acc, item)
-              // acc.price > item.price ? acc = item : acc = item
-              return acc;
-            }, 0)
-          } */}
-
+          {  // console.log(camion)
+            searchByLocation && products.map(product => {
+              return <CardSimple
+                showMore={searchById}
+                key={product.id}
+                id={product.id}
+                img={product.thumbnail}
+                title={product.title}
+                price={product.price}
+                shipping={product.shipping.free_shipping} />
+            })
+          }
 
         </div>
       </main>

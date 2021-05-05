@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBox from './Checkbox';
 import Lista from './list'
+import ListLocation from './ListLocation'
 
 
 
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SimpleAccordion({ checkShipping, funcion, clickOrder }) {
+export default function SimpleAccordion({ checkShipping, funcion, funcionLocation, clickOrder }) {
     const classes = useStyles();
 
     return (
@@ -53,14 +54,23 @@ export default function SimpleAccordion({ checkShipping, funcion, clickOrder }) 
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <Accordion disabled>
+
+            <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel3a-content"
                     id="panel3a-header"
                 >
-                    <Typography className={classes.heading}>Disabled Accordion</Typography>
+                    <Typography className={classes.heading}>Buscar por ubicacion:
+                    
+                    </Typography>
+                  
                 </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>
+                    <ListLocation funcion={funcionLocation} funcionLocation={funcionLocation} />
+                    </Typography>
+                </AccordionDetails>
             </Accordion>
         </div>
     );

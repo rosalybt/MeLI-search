@@ -4,7 +4,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const checkBox = ({ checked, checkBxName, optionName, funcion }) => {
 
-    const handleChange = () => { funcion() }
+    const handleChange = () => funcion()
 
     return (
         <FormControlLabel
